@@ -27,10 +27,10 @@
                         <div class="input-group number-spinner">
                            <button class="btn btn-default"><i id="subItemPhone" class="fas fa-minus"></i></button>
                            <input id="numberOfItemPhone" type="text" class="form-control text-center" value="1">
-                           <button  class="btn btn-default"><i id="addItemPhone" class="fas fa-plus"></i></button>
+                           <button class="btn btn-default"><i id="addItemPhone" class="fas fa-plus"></i></button>
                         </div>
                         <h5>$ <span id="pricePhone">1219</span> </h5>
-                        <img  src="images/remove.png" alt="" class="remove-item">
+                        <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
                </div>
@@ -48,7 +48,7 @@
                            <button class="btn btn-default"><i id="addItemCase" class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$<span id="casePrice">59</span> </h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -78,57 +78,70 @@
       </div>
    </section>
 
-      <script>
-         //Phone
-
-          const totalItemPhone = document.getElementById("numberOfItemPhone").value;
-         var productQuantityPhone = parseInt(totalItemPhone);
+   <script>
 
 
-         //Plus add Item iPhone11 Black
-         const plusButtonPhone = document.getElementById("addItemPhone");
-         plusButtonPhone.addEventListener("click",function () {
-           productQuantityPhone++;
-            document.getElementById("numberOfItemPhone").value= productQuantityPhone;
-         })
+      //Plus add Item iPhone11 Black
+      const plusButtonPhone = document.getElementById("addItemPhone");
+      plusButtonPhone.addEventListener("click", function () {
+         const itemNumPhone = getItemNum("numberOfItemPhone");
+         updatePhoneQuantity("numberOfItemPhone", itemNumPhone);
+      })
+
+      //Plus add Item case
+      const plusButtonCase = document.getElementById("addItemCase");
+      plusButtonCase.addEventListener("click", function () {
+         const itemNumCase = getItemNum("numberOfItemCase");
+         updatePhoneQuantity("numberOfItemCase", itemNumCase);
+      })
 
 
-         //Minus subtractItem iPhone11 Black
-         const minusButtonPhone = document.getElementById("subItemPhone");
-         minusButtonPhone.addEventListener("click",function () {
-           if (productQuantityPhone>=1) {
-            productQuantityPhone--;
-           }
-           
-            document.getElementById("numberOfItemPhone").value= productQuantityPhone;
-         })
+      //Minus subtractItem iPhone11 Black
+      const minusButtonPhone = document.getElementById("subItemPhone");
+      minusButtonPhone.addEventListener("click", function () {
+         const itemNumPhone = getItemNum("numberOfItemPhone");
+         subPhoneQuantity("numberOfItemPhone", itemNumPhone);
 
-         //case
+      })
 
-         const totalItemCase = document.getElementById("numberOfItemCase").value;
-         var productQuantityCase = parseInt(totalItemCase);
+      //Minus subtractItem case
+      const minusButtonCase = document.getElementById("subItemCase");
+      minusButtonCase.addEventListener("click", function () {
 
-
-         //Plus add Item case
-         const plusButtonCase = document.getElementById("addItemCase");
-         plusButtonCase.addEventListener("click",function () {
-           productQuantityCase++;
-            document.getElementById("numberOfItemCase").value= productQuantityCase;
-         })
+         const itemNumCase = getItemNum("numberOfItemCase");
+         subPhoneQuantity("numberOfItemCase", itemNumCase);
 
 
-         //Minus subtractItem case
-         const minusButtonCase = document.getElementById("subItemCase");
-         minusButtonCase.addEventListener("click",function () {
-           if (productQuantityCase>=1) {
-            productQuantityCase--;
-           }
-           
-            document.getElementById("numberOfItemCase").value= productQuantityCase;
-         })
+      })
+
+      function getItemNum(id) {
+         const currentItem = document.getElementById(id).value;
+         var quantity = parseInt(currentItem);
+         return quantity;
+
+      }
+
+      function updatePhoneQuantity(id, number) {
+         number++;
+         document.getElementById(id).value = number;
+         
+
+      }
+
+      function subPhoneQuantity(id, number) {
+         if (number >= 1) {
+            number--;
+         }
+
+         document.getElementById(id).value = number;
+      }
+
+     
 
 
-      </script>
+
+
+   </script>
 
 
 
