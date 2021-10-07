@@ -25,12 +25,12 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button class="btn btn-default"><i id="subItemPhone" class="fas fa-minus"></i></button>
+                           <input id="numberOfItemPhone" type="text" class="form-control text-center" value="1">
+                           <button  class="btn btn-default"><i id="addItemPhone" class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
+                        <h5>$ <span id="pricePhone">1219</span> </h5>
+                        <img  src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
                </div>
@@ -43,9 +43,9 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button class="btn btn-default"><i id="subItemCase" class="fas fa-minus"></i></button>
+                           <input id="numberOfItemCase" type="text" class="form-control text-center" value="1">
+                           <button class="btn btn-default"><i id="addItemCase" class="fas fa-plus"></i></button>
 
                         </div>
                         <h5>$59</h5>
@@ -77,6 +77,61 @@
          </div>
       </div>
    </section>
+
+      <script>
+         //Phone
+
+          const totalItemPhone = document.getElementById("numberOfItemPhone").value;
+         var productQuantityPhone = parseInt(totalItemPhone);
+
+
+         //Plus add Item iPhone11 Black
+         const plusButtonPhone = document.getElementById("addItemPhone");
+         plusButtonPhone.addEventListener("click",function () {
+           productQuantityPhone++;
+            document.getElementById("numberOfItemPhone").value= productQuantityPhone;
+         })
+
+
+         //Minus subtractItem iPhone11 Black
+         const minusButtonPhone = document.getElementById("subItemPhone");
+         minusButtonPhone.addEventListener("click",function () {
+           if (productQuantityPhone>=1) {
+            productQuantityPhone--;
+           }
+           
+            document.getElementById("numberOfItemPhone").value= productQuantityPhone;
+         })
+
+         //case
+
+         const totalItemCase = document.getElementById("numberOfItemCase").value;
+         var productQuantityCase = parseInt(totalItemCase);
+
+
+         //Plus add Item case
+         const plusButtonCase = document.getElementById("addItemCase");
+         plusButtonCase.addEventListener("click",function () {
+           productQuantityCase++;
+            document.getElementById("numberOfItemCase").value= productQuantityCase;
+         })
+
+
+         //Minus subtractItem case
+         const minusButtonCase = document.getElementById("subItemCase");
+         minusButtonCase.addEventListener("click",function () {
+           if (productQuantityCase>=1) {
+            productQuantityCase--;
+           }
+           
+            document.getElementById("numberOfItemCase").value= productQuantityCase;
+         })
+
+
+      </script>
+
+
+
 </body>
 
 </html>
