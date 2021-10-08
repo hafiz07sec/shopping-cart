@@ -64,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="subTotal"> 1,278</span></h5>
                         <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="total"> 1,278</span></h5>
                      </div>
                   </div>
                </div>
@@ -79,24 +79,26 @@
    </section>
 
    <script>
-      const currentPhonePrice = document.getElementById("phonePrice").innerText;
-      const totalPhonePrice = parseInt(currentPhonePrice);
-      const currentCasePrice = document.getElementById("casePrice").innerText;
-      const totalCasePrice = parseInt(currentCasePrice);
+      const currentPhonePrice = parseInt(document.getElementById("phonePrice").innerText);
+
+      const currentCasePrice = parseInt(document.getElementById("casePrice").innerText);
+
 
 
       //Plus add Item iPhone11 Black
       const plusButtonPhone = document.getElementById("addItemPhone");
       plusButtonPhone.addEventListener("click", function () {
          const itemNumPhone = getItemNum("numberOfItemPhone");
-         updatePhoneQuantity("numberOfItemPhone", itemNumPhone, "phonePrice", totalPhonePrice);
+         const priceOfPhone = updatePhoneQuantity("numberOfItemPhone", itemNumPhone, "phonePrice", currentPhonePrice);
+         updateTotal();
       })
 
       //Plus add Item case
       const plusButtonCase = document.getElementById("addItemCase");
       plusButtonCase.addEventListener("click", function () {
          const itemNumCase = getItemNum("numberOfItemCase");
-         updatePhoneQuantity("numberOfItemCase", itemNumCase, "casePrice", totalCasePrice);
+         const priceOfCase = updatePhoneQuantity("numberOfItemCase", itemNumCase, "casePrice", currentCasePrice);
+         updateTotal();
       })
 
 
@@ -104,22 +106,21 @@
       const minusButtonPhone = document.getElementById("subItemPhone");
       minusButtonPhone.addEventListener("click", function () {
          const itemNumPhone = getItemNum("numberOfItemPhone");
-         subPhoneQuantity("numberOfItemPhone", itemNumPhone, "phonePrice", totalPhonePrice);
-
+         const priceOfPhone = subPhoneQuantity("numberOfItemPhone", itemNumPhone, "phonePrice", currentPhonePrice);
+         updateTotal();
       })
 
       //Minus subtractItem case
       const minusButtonCase = document.getElementById("subItemCase");
       minusButtonCase.addEventListener("click", function () {
          const itemNumCase = getItemNum("numberOfItemCase");
-         subPhoneQuantity("numberOfItemCase", itemNumCase, "casePrice", totalCasePrice);
-
+         const priceOfCase = subPhoneQuantity("numberOfItemCase", itemNumCase, "casePrice", currentCasePrice);
+         updateTotal();
 
       })
 
       function getItemNum(id) {
-         const currentItem = document.getElementById(id).value;
-         var quantity = parseInt(currentItem);
+         var quantity = parseInt(document.getElementById(id).value);
          return quantity;
 
       }
@@ -127,9 +128,8 @@
       function updatePhoneQuantity(id1, number, id2, price) {
          number++;
          document.getElementById(id1).value = number;
-         const phoneTotal= number*price;
-         document.getElementById(id2).innerText = phoneTotal;
-        
+         document.getElementById(id2).innerText = number * price;
+
 
 
       }
@@ -138,14 +138,19 @@
          if (number >= 1) {
             number--;
          }
-
          document.getElementById(id1).value = number;
-         const caseTotal=number*price;
-         document.getElementById(id2).innerText = caseTotal;
-        
+         document.getElementById(id2).innerText = number * price;
+
+      }
+      function updateTotal() {
+         var inTotal = parseInt(document.getElementById("phonePrice").innerText);
+         var sum = parseInt(document.getElementById("casePrice").innerText);
+
+         document.getElementById("subTotal").innerText = inTotal + sum;
+         document.getElementById("total").innerText = inTotal + sum;
       }
 
-      
+
 
 
 
