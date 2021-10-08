@@ -30,7 +30,7 @@
                            <button class="btn btn-default"><i id="addItemPhone" class="fas fa-plus"></i></button>
                         </div>
                         <h5>$ <span id="phonePrice"> 1219</span> </h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
+                        <img  src="images/remove.png" alt="" id="resetPhone"  class="remove-item">
                      </div>
                   </div>
                </div>
@@ -49,7 +49,7 @@
 
                         </div>
                         <h5>$<span id="casePrice"> 59</span> </h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
+                        <img  src="images/remove.png" alt="" id="resetCase" class="remove-item">
                      </div>
                   </div>
                </div>
@@ -118,6 +118,27 @@
          updateTotal();
 
       })
+
+      //removed cart Phone
+      const removeBtnPhone = document.getElementById("resetPhone")
+      removeBtnPhone.addEventListener("click",function () {
+         reset("numberOfItemPhone","phonePrice");
+      
+      })
+      //removed cart Case
+      const removeBtnCase = document.getElementById("resetCase")
+      removeBtnCase.addEventListener("click",function () {
+         reset("numberOfItemCase","casePrice");
+        
+      })
+
+
+
+      function reset(id1,id2) {
+         document.getElementById(id1).value= 0;
+         document.getElementById(id2).innerText = 0;
+         updateTotal();
+      }
 
       function getItemNum(id) {
          var quantity = parseInt(document.getElementById(id).value);
